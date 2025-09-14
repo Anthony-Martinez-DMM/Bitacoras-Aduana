@@ -5,8 +5,8 @@
  */
 package Model;
 
-import Vista.ReporteBitacoraPrensa;
-import Vista.ReporteBitacoraPrensaHB;
+import View.ReporteBitacoraPrensa;
+import View.ReporteBitacoraPrensaHB;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,7 +36,7 @@ import org.apache.poi.ss.usermodel.Workbook;
  */
 public class ModelBitacoraHBPrensa {
 
-    public void consultaYLlenadoDeTablas4Lot(MetodosConnection m, ReporteBitacoraPrensaHB reportesVista) {
+    public void consultaYLlenadoDeTablas4Lot(DBConexion m, ReporteBitacoraPrensaHB reportesVista) {
         Connection connectionDB = m.conexionHBMySQL();
 
         String fecha_inicio;
@@ -222,7 +222,7 @@ public class ModelBitacoraHBPrensa {
         }
     }
 
-    public void consultaYLlenadoDeTablasNormal(MetodosConnection m, ReporteBitacoraPrensaHB reportesVista) {
+    public void consultaYLlenadoDeTablasNormal(DBConexion m, ReporteBitacoraPrensaHB reportesVista) {
         Connection connectionDB = m.conexionHBMySQL();
 
         String fecha_inicio;
@@ -411,7 +411,7 @@ public class ModelBitacoraHBPrensa {
         }
     }
 
-    public Date fechaUltima(String orden, MetodosConnection m) {
+    public Date fechaUltima(String orden, DBConexion m) {
         Connection con = m.conexionHBMySQL();
         Date rg = null;
         try {
@@ -422,12 +422,12 @@ public class ModelBitacoraHBPrensa {
             rg = cst.getDate(2);
             con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ModelBitacoraEmpaque.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bitacora_BS_Empaque_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rg;
     }
 
-    public String totalTiempo(String orden, MetodosConnection m, String mog, String linea) {
+    public String totalTiempo(String orden, DBConexion m, String mog, String linea) {
         Connection con = m.conexionHBMySQL();
         String total = "";
         String[] data = new String[8];
@@ -476,7 +476,7 @@ public class ModelBitacoraHBPrensa {
             total = formatearMinutosAHoraMinuto(totalTotal);
             con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ModelBitacoraEmpaque.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bitacora_BS_Empaque_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
         return total;
     }
@@ -589,7 +589,7 @@ public class ModelBitacoraHBPrensa {
         }
     }
 
-    public void busquedaMOG(MetodosConnection m, ReporteBitacoraPrensaHB reportesVista) {
+    public void busquedaMOG(DBConexion m, ReporteBitacoraPrensaHB reportesVista) {
 
         Connection connectionDB = m.conexionHBMySQL();
         String ord;

@@ -5,7 +5,7 @@
  */
 package Model;
 
-import Vista.ReporteBitacoraPrensa;
+import View.ReporteBitacoraPrensa;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,7 +35,7 @@ import org.apache.poi.ss.usermodel.Workbook;
  */
 public class ModelBitacoraPrensa {
 
-    public void consultaYLlenadoDeTablas4Lot(MetodosConnection m, ReporteBitacoraPrensa reportesVista) {
+    public void consultaYLlenadoDeTablas4Lot(DBConexion m, ReporteBitacoraPrensa reportesVista) {
         Connection connectionDB = m.conexionBUSHMySQL();
 
         String fecha_inicio;
@@ -205,7 +205,7 @@ public class ModelBitacoraPrensa {
         }
     }
     
-    public void consultaYLlenadoDeTablasNormal(MetodosConnection m, ReporteBitacoraPrensa reportesVista) {
+    public void consultaYLlenadoDeTablasNormal(DBConexion m, ReporteBitacoraPrensa reportesVista) {
         Connection connectionDB = m.conexionBUSHMySQL();
 
         String fecha_inicio;
@@ -381,7 +381,7 @@ public class ModelBitacoraPrensa {
         }
     }
 
-    public Date fechaUltima(String orden, MetodosConnection m) {
+    public Date fechaUltima(String orden, DBConexion m) {
         Connection con = m.conexionBUSHMySQL();
         Date rg = null;
         try {
@@ -392,12 +392,12 @@ public class ModelBitacoraPrensa {
             rg = cst.getDate(2);
             con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ModelBitacoraEmpaque.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bitacora_BS_Empaque_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rg;
     }
 
-    public String totalTiempo(String orden, MetodosConnection m, String mog, String linea) {
+    public String totalTiempo(String orden, DBConexion m, String mog, String linea) {
         Connection con = m.conexionBUSHMySQL();
         String total = "";
         String[] data = new String[15];
@@ -446,7 +446,7 @@ public class ModelBitacoraPrensa {
             total = formatearMinutosAHoraMinuto(totalTotal);
             con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ModelBitacoraEmpaque.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bitacora_BS_Empaque_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
         return total;
     }
@@ -549,7 +549,7 @@ public class ModelBitacoraPrensa {
         }
     }
 
-    public void busquedaMOG(MetodosConnection m, ReporteBitacoraPrensa reportesVista){
+    public void busquedaMOG(DBConexion m, ReporteBitacoraPrensa reportesVista){
         
         Connection connectionDB = m.conexionBUSHMySQL();
         String ord;
