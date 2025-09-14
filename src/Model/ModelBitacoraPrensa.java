@@ -36,7 +36,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 public class ModelBitacoraPrensa {
 
     public void consultaYLlenadoDeTablas4Lot(MetodosConnection m, ReporteBitacoraPrensa reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -206,7 +206,7 @@ public class ModelBitacoraPrensa {
     }
     
     public void consultaYLlenadoDeTablasNormal(MetodosConnection m, ReporteBitacoraPrensa reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -382,7 +382,7 @@ public class ModelBitacoraPrensa {
     }
 
     public Date fechaUltima(String orden, MetodosConnection m) {
-        Connection con = m.conexionMySQL();
+        Connection con = m.conexionBUSHMySQL();
         Date rg = null;
         try {
             CallableStatement cst = con.prepareCall("{call traerUltimaFecha(?,?)}");
@@ -398,7 +398,7 @@ public class ModelBitacoraPrensa {
     }
 
     public String totalTiempo(String orden, MetodosConnection m, String mog, String linea) {
-        Connection con = m.conexionMySQL();
+        Connection con = m.conexionBUSHMySQL();
         String total = "";
         String[] data = new String[15];
         int[] horas = new int[15];
@@ -551,7 +551,7 @@ public class ModelBitacoraPrensa {
 
     public void busquedaMOG(MetodosConnection m, ReporteBitacoraPrensa reportesVista){
         
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
         String ord;
         ord = reportesVista.jTextFieldBusquedaMOG.getText();
         int total = 0;

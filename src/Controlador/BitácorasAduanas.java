@@ -22,7 +22,7 @@ import Vista.ReporteBitacoraPrensaHB;
  *
  * @author DMM-ADMIN
  */
-public class ReportesAduanas {
+public class BitácorasAduanas {
 
     /**
      * @param args the command line arguments

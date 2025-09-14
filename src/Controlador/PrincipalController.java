@@ -56,8 +56,8 @@ public class PrincipalController implements KeyListener, ActionListener {
     public void escuchadores(){
         ///////////////PCK////////////////////////////////////
         vistaElegirReporte.jButtonPCK.addActionListener(this);
-        vistaElegirReporteLogin.jButtonBushing.addActionListener(this);
-        vistaElegirReporteLogin.jButtonHalfBearing.addActionListener(this);
+        vistaElegirReporteLogin.btnBushing.addActionListener(this);
+        vistaElegirReporteLogin.btnHalfbearing.addActionListener(this);
         vistaElegirReporte.jButtonRegresar.addActionListener(this);
         vw_pck.jButtonAtras.addActionListener(this);
         vw_pck.jButtonBuscar.addActionListener(this);
@@ -164,7 +164,7 @@ public class PrincipalController implements KeyListener, ActionListener {
         }
         
         /////////////////////PCK//////////////////
-        if(e.getSource() == vistaElegirReporteLogin.jButtonBushing){
+        if(e.getSource() == vistaElegirReporteLogin.btnBushing){
             conet=2;
             banderaPro=2;
             vistaElegirReporte.setVisible(true);
@@ -173,7 +173,7 @@ public class PrincipalController implements KeyListener, ActionListener {
             
         }
         
-        if(e.getSource() == vistaElegirReporteLogin.jButtonHalfBearing){
+        if(e.getSource() == vistaElegirReporteLogin.btnHalfbearing){
             conet=1;
             banderaPro=1;
             vistaElegirReporte.setVisible(true);

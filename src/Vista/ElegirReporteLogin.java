@@ -30,19 +30,23 @@ public class ElegirReporteLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonHalfBearing = new javax.swing.JButton();
-        jButtonBushing = new javax.swing.JButton();
+        btnHalfbearing = new javax.swing.JButton();
+        btnBushing = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonHalfBearing.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jButtonHalfBearing.setText("Half Bearing");
+        btnHalfbearing.setBackground(new java.awt.Color(0, 0, 0));
+        btnHalfbearing.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnHalfbearing.setForeground(new java.awt.Color(255, 255, 255));
+        btnHalfbearing.setText("Half Bearing");
 
-        jButtonBushing.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jButtonBushing.setText("Bushing");
-        jButtonBushing.addActionListener(new java.awt.event.ActionListener() {
+        btnBushing.setBackground(new java.awt.Color(0, 0, 0));
+        btnBushing.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        btnBushing.setForeground(new java.awt.Color(255, 255, 255));
+        btnBushing.setText("Bushing");
+        btnBushing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBushingActionPerformed(evt);
+                btnBushingActionPerformed(evt);
             }
         });
 
@@ -51,28 +55,28 @@ public class ElegirReporteLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonHalfBearing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonBushing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnHalfbearing, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBushing, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jButtonHalfBearing, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(jButtonBushing, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addComponent(btnBushing, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(btnHalfbearing, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonBushingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBushingActionPerformed
+    private void btnBushingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBushingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonBushingActionPerformed
+    }//GEN-LAST:event_btnBushingActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,7 +117,7 @@ public class ElegirReporteLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButtonBushing;
-    public javax.swing.JButton jButtonHalfBearing;
+    public javax.swing.JButton btnBushing;
+    public javax.swing.JButton btnHalfbearing;
     // End of variables declaration//GEN-END:variables
 }

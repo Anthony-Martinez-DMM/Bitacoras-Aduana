@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class ModelBitacoraMaquinado {
 
     public void consultaYLlenadoDeTablasHBPlatinado(MetodosConnection m, ReporteBitacoraMaquinado reportesVista) {
-        Connection connectionDB = m.conexionMySQL2();
+        Connection connectionDB = m.conexionHBMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -151,7 +151,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public void consultaYLlenadoDeTablasHBMaquinado(MetodosConnection m, ReporteBitacoraMaquinado reportesVista) {
-        Connection connectionDB = m.conexionMySQL2();
+        Connection connectionDB = m.conexionHBMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -248,8 +248,8 @@ public class ModelBitacoraMaquinado {
                     data[7] = nuevaFecha;
                     data[8] = "";
                     data[9] = "";
-                    data[10] = rst.getString("total_piezas_procesadas");
-                    data[11] = rst.getString("total_piezas_aprobadas");
+                    data[10] = rst.getString("piezas_procesadas");
+                    data[11] = rst.getString("piezas_aprobadas");
                     tiempo = totalTiempoHB(rst.getString("orden_manufactura"), connectionDB, rst.getString("mog"), wc);
                     String[] hraDiv = tiempo.split(":");
                     data[12] = hraDiv[0];
@@ -275,7 +275,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public void consultaYLlenadoDeTablas(MetodosConnection m, ReporteBitacoraMaquinado reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -412,7 +412,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public void consultaYLlenadoDeTablasNuevo(MetodosConnection m, ReporteBitacoraBush reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -587,7 +587,7 @@ public class ModelBitacoraMaquinado {
     }
     
     public void consultaYLlenadoDeTablasByMOGHB(MetodosConnection m, ReporteBitacoraMaquinado reportesVista) {
-        Connection connectionDB = m.conexionMySQL2();
+        Connection connectionDB = m.conexionHBMySQL();
 
         String fecha_inicio;
         String fecha_fin,orden1;
@@ -705,7 +705,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public void consultaYLlenadoDeTablasByMOG(MetodosConnection m, ReporteBitacoraMaquinado reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -833,7 +833,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public Date fechaUltima2(String orden, MetodosConnection m) {
-        Connection con = m.conexionMySQL2();
+        Connection con = m.conexionHBMySQL();
         Date rg = null;
         try {
             CallableStatement cst = con.prepareCall("{call traerUltimaFecha(?,?)}");
@@ -849,7 +849,7 @@ public class ModelBitacoraMaquinado {
     }
     
     public void consultaYLlenadoDeTablasByMOGnuevo(MetodosConnection m, ReporteBitacoraBush reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -1016,7 +1016,7 @@ public class ModelBitacoraMaquinado {
 
     public String ultimoProceso(MetodosConnection m, ReporteBitacoraBush reportesVista) {
         String last = null;
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
         String fi3, ultim;
 
         fi3 = reportesVista.jTextFieldBusquedaMOG.getText();
@@ -1054,7 +1054,7 @@ public class ModelBitacoraMaquinado {
 
     public String ultimoProceso2(MetodosConnection m, String mg) {
         String last = null;
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
         String ultim;
 
         String[] data = new String[5];
@@ -1090,7 +1090,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public String tiemposASumar(MetodosConnection m, ReporteBitacoraMaquinado reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
         String fi3 = reportesVista.jTextFieldBusquedaMOG.getText();
         String[] data = new String[20];
         int[] horas = new int[20];
@@ -1147,7 +1147,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public String tiemposASumarBush(MetodosConnection m, ReporteBitacoraBush reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
         String fi3 = reportesVista.jTextFieldBusquedaMOG.getText();
         String[] data = new String[20];
         int[] horas = new int[20];
@@ -1204,7 +1204,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public String tiemposASumarBush2(MetodosConnection m, String mg) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
         //String fi3 = reportesVista.jTextFieldBusquedaMOG.getText();
         String[] data = new String[20];
         int[] horas = new int[20];
@@ -1261,7 +1261,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public void consultaBushByMOG(MetodosConnection m, ReporteBitacoraBush reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
         String wc;
 
         String fi3, ultim, tiempo;
@@ -1396,7 +1396,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public void consultaBushByFechas(MetodosConnection m, ReporteBitacoraBush reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
         String wc;
         String fecha_inicio;
         String fecha_fin;
@@ -1731,7 +1731,7 @@ public class ModelBitacoraMaquinado {
     }
 
     public Date fechaUltima(String orden, MetodosConnection m) {
-        Connection con = m.conexionMySQL();
+        Connection con = m.conexionBUSHMySQL();
         Date rg = null;
         try {
             CallableStatement cst = con.prepareCall("{call traerUltimaFecha(?,?)}");
@@ -1764,7 +1764,7 @@ public class ModelBitacoraMaquinado {
 
     public int validarProduccioncontinua(MetodosConnection m, String order) {
         int res = 0;
-        Connection con = m.conexionMySQL();
+        Connection con = m.conexionBUSHMySQL();
         String horaInC, horaFinF, horaInF;
         Date fechaInC, fechaFinF, fechaInF;
         try {
@@ -1830,7 +1830,7 @@ public class ModelBitacoraMaquinado {
 
     public String tiempoRealCoining(String orden, String mg, MetodosConnection m) {
         String valor = "";
-        Connection con = m.conexionMySQL();
+        Connection con = m.conexionBUSHMySQL();
         String tiempoF, tiempoC, TotalTiempo;
         String fechaCierreF = null, fechaCierreC = null, horaCierreForming = null;
         String comp;

@@ -31,7 +31,7 @@ public class MetodosConnection {
 
     Connection con;
 
-    public Connection conexionMySQL() {
+    public Connection conexionBUSHMySQL() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://192.168.155.16:3306"
@@ -43,32 +43,18 @@ public class MetodosConnection {
         }
         return con;
     }
-
-    public Connection conexionMySQL2() {
+    
+    public Connection conexionHBMySQL() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://192.168.155.16:3306"
-                    + "/rbppaperlesshalfpr?user=adminpaperless"
-                    + "&password=paperless2018");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306"
+                    + "/rbppaperlesshalfpr?user=root"
+                    + "&password=");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("error de conexion");
             JOptionPane.showMessageDialog(null, "error de conexion " + e);
         }
         return con;
-    }
-
-    public Connection conexionPrensaMaquinado() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://192.168.155.16:3306"
-                    + "/rbppaperlesshalfpr?user=adminpaperless"
-                    + "&password=paperless2018");
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Error de conexion");
-            JOptionPane.showMessageDialog(null, "Error de conexion " + e);
-        } finally {
-            return con;
-        }
     }
 
     public void reporte(JTable tabla) {

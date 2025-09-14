@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 public class ModelBitacoraEmpaque {
 
     public void consultaYLlenadoDeTablas(MetodosConnection m, ReporteBitacoraEmpaque reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -190,7 +190,7 @@ public class ModelBitacoraEmpaque {
     }
 
     public void consultaYLlenadoDeTablasByMOG(MetodosConnection m, ReporteBitacoraEmpaque reportesVista) {
-        Connection connectionDB = m.conexionMySQL();
+        Connection connectionDB = m.conexionBUSHMySQL();
 
         String tiempo = null;
         String wc, orden, rodguide = "", scrap = null;
@@ -345,7 +345,7 @@ public class ModelBitacoraEmpaque {
     }
     
     public Date fechaUltima(String orden, MetodosConnection m) {
-        Connection con = m.conexionMySQL();
+        Connection con = m.conexionBUSHMySQL();
         Date rg = null;
         try {
             CallableStatement cst = con.prepareCall("{call traerUltimaFecha(?,?)}");
@@ -361,7 +361,7 @@ public class ModelBitacoraEmpaque {
     }
 
     public int proceRodGuide(String orden, MetodosConnection m) {
-        Connection con = m.conexionMySQL();
+        Connection con = m.conexionBUSHMySQL();
         int rg = 0;
         try {
             CallableStatement cst = con.prepareCall("{call scrapRg1(?,?)}");
@@ -377,7 +377,7 @@ public class ModelBitacoraEmpaque {
     }
 
     public String totalTiempo(String orden, MetodosConnection m, String mog, String linea) {
-        Connection con = m.conexionMySQL();
+        Connection con = m.conexionBUSHMySQL();
         String total = "";
         String[] data = new String[21];
         int[] horas = new int[21];
