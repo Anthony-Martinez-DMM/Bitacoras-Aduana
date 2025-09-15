@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import View.Bitacora_HB_Maquinado_View;
 import View.Menu_HB_View;
 import javax.swing.JOptionPane;
 
@@ -32,7 +33,9 @@ public class Menu_HB_Controller {
                 // TODO
                 break;
             case "HBL":
-                // TODO
+                Bitacora_HB_Maquinado_View maquinado_View = new Bitacora_HB_Maquinado_View();
+                Bitacora_HB_Maquinado_Controller maquinado_Controller = new Bitacora_HB_Maquinado_Controller(maquinado_View);
+                maquinado_View.setVisible(true);
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Área desconocida");

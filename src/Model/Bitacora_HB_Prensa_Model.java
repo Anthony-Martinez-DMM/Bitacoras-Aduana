@@ -6,7 +6,7 @@
 package Model;
 
 import View.Bitacora_BS_Prensa_View;
-import View.ReporteBitacoraPrensaHB;
+import View.Bitacora_HB_Prensa_View;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,9 +34,9 @@ import org.apache.poi.ss.usermodel.Workbook;
  *
  * @author ALEJANDRO LARES
  */
-public class ModelBitacoraHBPrensa {
+public class Bitacora_HB_Prensa_Model {
 
-    public void consultaYLlenadoDeTablas4Lot(DBConexion m, ReporteBitacoraPrensaHB reportesVista) {
+    public void consultaYLlenadoDeTablas4Lot(DBConexion m, Bitacora_HB_Prensa_View reportesVista) {
         Connection connectionDB = m.conexionHBMySQL();
 
         String fecha_inicio;
@@ -222,7 +222,7 @@ public class ModelBitacoraHBPrensa {
         }
     }
 
-    public void consultaYLlenadoDeTablasNormal(DBConexion m, ReporteBitacoraPrensaHB reportesVista) {
+    public void consultaYLlenadoDeTablasNormal(DBConexion m, Bitacora_HB_Prensa_View reportesVista) {
         Connection connectionDB = m.conexionHBMySQL();
 
         String fecha_inicio;
@@ -589,7 +589,7 @@ public class ModelBitacoraHBPrensa {
         }
     }
 
-    public void busquedaMOG(DBConexion m, ReporteBitacoraPrensaHB reportesVista) {
+    public void busquedaMOG(DBConexion m, Bitacora_HB_Prensa_View reportesVista) {
 
         Connection connectionDB = m.conexionHBMySQL();
         String ord;
@@ -916,7 +916,7 @@ public class ModelBitacoraHBPrensa {
         }
     }
 
-    public void limpiarTabla(ReporteBitacoraPrensaHB reportesVista) {
+    public void limpiarTabla(Bitacora_HB_Prensa_View reportesVista) {
         DefaultTableModel dtm = new DefaultTableModel();
         reportesVista.jTableReporte.setModel(dtm);
         reportesVista.jTableReporte.setAutoResizeMode(0);

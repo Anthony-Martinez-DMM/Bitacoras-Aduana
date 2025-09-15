@@ -10,7 +10,7 @@ import View.Bitacora_BS_Procesos_View;
 import View.Menu_BS_View;
 import View.Menu_Principal_View;
 import View.Menu_HB_View;
-import View.ReporteBitacoraPrensaHB;
+import View.Bitacora_HB_Prensa_View;
 import View.Bitacora_BS_Maquinado_View;
 import View.Bitacora_BS_Prensa_View;
 import Model.*;
@@ -35,8 +35,8 @@ public class PrincipalController implements KeyListener, ActionListener {
     Bitacora_BS_Maquinado_View vw_maq;
     Bitacora_BS_Procesos_View vw_bush;
     Menu_Principal_View vistaElegirReporteLogin;
-    ReporteBitacoraPrensaHB vw_pressHB;
-    ModelBitacoraHBPrensa mdl_prs_hb;
+    Bitacora_HB_Prensa_View vw_pressHB;
+    Bitacora_HB_Prensa_Model mdl_prs_hb;
     Menu_HB_View elegirReporteHBView;
     
     int banderaPro;
@@ -44,7 +44,7 @@ public class PrincipalController implements KeyListener, ActionListener {
     
     public PrincipalController(Menu_BS_View vistaElegirReporte, DBConexion m, Bitacora_BS_Empaque_Model mdl_pck, Bitacora_BS_Empaque_View vw_pck, 
             Bitacora_BS_Prensa_Model mdl_prs, Bitacora_BS_Prensa_View vw_prs, Bitacora_BS_Maquinado_Model mdl_maq, Bitacora_BS_Maquinado_View vw_maq, Bitacora_BS_Procesos_View vw_bush, 
-            Menu_Principal_View vistaElegirReporteLogin, ReporteBitacoraPrensaHB vw_pressHB, ModelBitacoraHBPrensa mdl_prs_hb, Menu_HB_View elegirReporteHB) {
+            Menu_Principal_View vistaElegirReporteLogin, Bitacora_HB_Prensa_View vw_pressHB, Bitacora_HB_Prensa_Model mdl_prs_hb, Menu_HB_View elegirReporteHB) {
         this.vistaElegirReporte = vistaElegirReporte;
         this.m = m;
         this.mdl_pck = mdl_pck;
