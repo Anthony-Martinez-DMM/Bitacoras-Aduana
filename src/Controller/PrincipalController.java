@@ -12,7 +12,7 @@ import View.Menu_Principal_View;
 import View.Menu_HB_View;
 import View.ReporteBitacoraPrensaHB;
 import View.ReporteBitacoraMaquinado;
-import View.ReporteBitacoraPrensa;
+import View.Bitacora_BS_Prensa_View;
 import Model.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,8 +29,8 @@ public class PrincipalController implements KeyListener, ActionListener {
     DBConexion m;
     Bitacora_BS_Empaque_Model mdl_pck;
     Bitacora_BS_Empaque_View vw_pck;
-    ModelBitacoraPrensa mdl_prs;
-    ReporteBitacoraPrensa vw_prs;
+    Bitacora_BS_Prensa_Model mdl_prs;
+    Bitacora_BS_Prensa_View vw_prs;
     ModelBitacoraMaquinado mdl_maq;
     ReporteBitacoraMaquinado vw_maq;
     ReporteBitacoraBush vw_bush;
@@ -43,7 +43,7 @@ public class PrincipalController implements KeyListener, ActionListener {
     int conet;
     
     public PrincipalController(Menu_BS_View vistaElegirReporte, DBConexion m, Bitacora_BS_Empaque_Model mdl_pck, Bitacora_BS_Empaque_View vw_pck, 
-            ModelBitacoraPrensa mdl_prs, ReporteBitacoraPrensa vw_prs, ModelBitacoraMaquinado mdl_maq, ReporteBitacoraMaquinado vw_maq, ReporteBitacoraBush vw_bush, 
+            Bitacora_BS_Prensa_Model mdl_prs, Bitacora_BS_Prensa_View vw_prs, ModelBitacoraMaquinado mdl_maq, ReporteBitacoraMaquinado vw_maq, ReporteBitacoraBush vw_bush, 
             Menu_Principal_View vistaElegirReporteLogin, ReporteBitacoraPrensaHB vw_pressHB, ModelBitacoraHBPrensa mdl_prs_hb, Menu_HB_View elegirReporteHB) {
         this.vistaElegirReporte = vistaElegirReporte;
         this.m = m;

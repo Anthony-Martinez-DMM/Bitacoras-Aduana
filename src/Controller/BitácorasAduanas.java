@@ -9,14 +9,14 @@ import Model.DBConexion;
 import Model.Bitacora_BS_Empaque_Model;
 import Model.ModelBitacoraHBPrensa;
 import Model.ModelBitacoraMaquinado;
-import Model.ModelBitacoraPrensa;
+import Model.Bitacora_BS_Prensa_Model;
 import View.Menu_BS_View;
 import View.Menu_HB_View;
 import View.Menu_Principal_View;
 import View.ReporteBitacoraBush;
 import View.Bitacora_BS_Empaque_View;
 import View.ReporteBitacoraMaquinado;
-import View.ReporteBitacoraPrensa;
+import View.Bitacora_BS_Prensa_View;
 import View.ReporteBitacoraPrensaHB;
 
 /**

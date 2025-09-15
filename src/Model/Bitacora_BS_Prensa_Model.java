@@ -5,7 +5,7 @@
  */
 package Model;
 
-import View.ReporteBitacoraPrensa;
+import View.Bitacora_BS_Prensa_View;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,10 +33,12 @@ import org.apache.poi.ss.usermodel.Workbook;
  *
  * @author DMM-ADMIN
  */
-public class ModelBitacoraPrensa {
+public class Bitacora_BS_Prensa_Model {
+    
+    DBConexion conexion = new DBConexion();
 
-    public void consultaYLlenadoDeTablas4Lot(DBConexion m, ReporteBitacoraPrensa reportesVista) {
-        Connection connectionDB = m.conexionBUSHMySQL();
+    public void consultaYLlenadoDeTablas4Lot(Bitacora_BS_Prensa_View reportesVista) {
+        Connection connectionDB = conexion.conexionBUSHMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -130,10 +132,10 @@ public class ModelBitacoraPrensa {
                             data[6] = "6";
                         }
 
-                        fech = fechaUltima(rst.getString("orden_manufactura"), m);
+                        fech = fechaUltima(rst.getString("orden_manufactura"));
                         nuevaFecha = dayformat.format(fech);
                         data[7] = nuevaFecha;
-                        tiempo = totalTiempo(rst.getString("orden_manufactura"), m, rst.getString("mog"), wc);
+                        tiempo = totalTiempo(rst.getString("orden_manufactura"), rst.getString("mog"), wc);
                         String[] hraDiv = tiempo.split(":");
                         data[8] = hraDiv[0];
                         data[9] = hraDiv[1];
@@ -205,8 +207,8 @@ public class ModelBitacoraPrensa {
         }
     }
     
-    public void consultaYLlenadoDeTablasNormal(DBConexion m, ReporteBitacoraPrensa reportesVista) {
-        Connection connectionDB = m.conexionBUSHMySQL();
+    public void consultaYLlenadoDeTablasNormal(Bitacora_BS_Prensa_View reportesVista) {
+        Connection connectionDB = conexion.conexionBUSHMySQL();
 
         String fecha_inicio;
         String fecha_fin;
@@ -302,10 +304,10 @@ public class ModelBitacoraPrensa {
                             data[6] = "6";
                         }
 
-                        fech = fechaUltima(rst.getString("orden_manufactura"), m);
+                        fech = fechaUltima(rst.getString("orden_manufactura"));
                         nuevaFecha = dayformat.format(fech);
                         data[7] = nuevaFecha;
-                        tiempo = totalTiempo(rst.getString("orden_manufactura"), m, rst.getString("mog"), wc);
+                        tiempo = totalTiempo(rst.getString("orden_manufactura"), rst.getString("mog"), wc);
                         String[] hraDiv = tiempo.split(":");
                         data[8] = hraDiv[0];
                         data[9] = hraDiv[1];
@@ -381,8 +383,8 @@ public class ModelBitacoraPrensa {
         }
     }
 
-    public Date fechaUltima(String orden, DBConexion m) {
-        Connection con = m.conexionBUSHMySQL();
+    public Date fechaUltima(String orden) {
+        Connection con = conexion.conexionBUSHMySQL();
         Date rg = null;
         try {
             CallableStatement cst = con.prepareCall("{call traerUltimaFecha(?,?)}");
@@ -397,8 +399,8 @@ public class ModelBitacoraPrensa {
         return rg;
     }
 
-    public String totalTiempo(String orden, DBConexion m, String mog, String linea) {
-        Connection con = m.conexionBUSHMySQL();
+    public String totalTiempo(String orden, String mog, String linea) {
+        Connection con = conexion.conexionBUSHMySQL();
         String total = "";
         String[] data = new String[15];
         int[] horas = new int[15];
@@ -549,9 +551,9 @@ public class ModelBitacoraPrensa {
         }
     }
 
-    public void busquedaMOG(DBConexion m, ReporteBitacoraPrensa reportesVista){
+    public void busquedaMOG(Bitacora_BS_Prensa_View reportesVista){
         
-        Connection connectionDB = m.conexionBUSHMySQL();
+        Connection connectionDB = conexion.conexionBUSHMySQL();
         String ord;
         ord = reportesVista.jTextFieldBusquedaMOG.getText();
         int total = 0;
@@ -637,10 +639,10 @@ public class ModelBitacoraPrensa {
                         data[6] = "6";
                     }
 
-                    fech = fechaUltima(rst.getString("orden_manufactura"), m);
+                    fech = fechaUltima(rst.getString("orden_manufactura"));
                     nuevaFecha = dayformat.format(fech);
                     data[7] = nuevaFecha;
-                    tiempo = totalTiempo(rst.getString("orden_manufactura"), m, rst.getString("mog"), wc);
+                    tiempo = totalTiempo(rst.getString("orden_manufactura"), rst.getString("mog"), wc);
                     String[] hraDiv = tiempo.split(":");
                     data[8] = hraDiv[0];
                     data[9] = hraDiv[1];
@@ -768,10 +770,10 @@ public class ModelBitacoraPrensa {
                             data2[6] = "6";
                         }
 
-                        fech = fechaUltima(rst13.getString("orden_manufactura"), m);
+                        fech = fechaUltima(rst13.getString("orden_manufactura"));
                         nuevaFecha = dayformat.format(fech);
                         data2[7] = nuevaFecha;
-                        tiempo = totalTiempo(rst13.getString("orden_manufactura"), m, rst13.getString("mog"), wc);
+                        tiempo = totalTiempo(rst13.getString("orden_manufactura"), rst13.getString("mog"), wc);
                         String[] hraDiv = tiempo.split(":");
                         data2[8] = hraDiv[0];
                         data2[9] = hraDiv[1];
@@ -841,11 +843,11 @@ public class ModelBitacoraPrensa {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ModelBitacoraPrensa.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bitacora_BS_Prensa_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void limpiarTabla(ReporteBitacoraPrensa reportesVista){
+    public void limpiarTabla(Bitacora_BS_Prensa_View reportesVista){
         DefaultTableModel dtm = new DefaultTableModel();
         reportesVista.jTableReporte.setModel(dtm);
         reportesVista.jTableReporte.setAutoResizeMode(0);

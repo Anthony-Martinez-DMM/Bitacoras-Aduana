@@ -5,7 +5,7 @@
  */
 package Model;
 
-import View.ReporteBitacoraPrensa;
+import View.Bitacora_BS_Prensa_View;
 import View.ReporteBitacoraPrensaHB;
 import java.awt.Desktop;
 import java.io.File;
@@ -912,7 +912,7 @@ public class ModelBitacoraHBPrensa {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ModelBitacoraPrensa.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bitacora_BS_Prensa_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
