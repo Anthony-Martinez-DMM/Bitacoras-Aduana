@@ -9,12 +9,12 @@ package View;
  *
  * @author DMM-ADMIN
  */
-public class ReporteBitacoraMaquinado extends javax.swing.JFrame {
+public class Bitacora_BS_Maquinado_View extends javax.swing.JFrame {
 
     /**
      * Creates new form ReporteAnselmo
      */
-    public ReporteBitacoraMaquinado() {
+    public Bitacora_BS_Maquinado_View() {
         initComponents();
         setLocationRelativeTo(null);
         this.setTitle("Bitácora de Máquinado/Platinado");
@@ -126,14 +126,30 @@ public class ReporteBitacoraMaquinado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReporteBitacoraMaquinado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bitacora_BS_Maquinado_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReporteBitacoraMaquinado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bitacora_BS_Maquinado_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReporteBitacoraMaquinado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bitacora_BS_Maquinado_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReporteBitacoraMaquinado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bitacora_BS_Maquinado_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -154,7 +170,7 @@ public class ReporteBitacoraMaquinado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReporteBitacoraMaquinado().setVisible(true);
+                new Bitacora_BS_Maquinado_View().setVisible(true);
             }
         });
     }
