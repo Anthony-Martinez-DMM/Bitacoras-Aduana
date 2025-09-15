@@ -5,7 +5,7 @@
  */
 package Model;
 
-import View.ReporteBitacoraBush;
+import View.Bitacora_BS_Procesos_View;
 import View.Bitacora_BS_Maquinado_View;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author DMM-ADMIN
  */
-public class Bitacora_BS_Maquinado_Model {
+public class Bitacora_BS_Procesos_Model {
     
     DBConexion conexion = new DBConexion();
 
@@ -276,144 +276,7 @@ public class Bitacora_BS_Maquinado_Model {
         }
     }
 
-    public void consultaYLlenadoDeTablas(Bitacora_BS_Maquinado_View reportesVista) {
-        Connection connectionDB = conexion.conexionBUSHMySQL();
-
-        String fecha_inicio;
-        String fecha_fin;
-        String wc, orden, mm, colu, defe;
-        String tiempo = null;
-        int cant;
-        String nuevaFecha;
-        Date fech;
-
-        Date fi = new Date();
-        Date ff = new Date();
-        DateFormat hourFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        DateFormat dayformat = new SimpleDateFormat("dd/MM/yyyy");
-        fi = reportesVista.jDateChooserInicio.getDate();
-        ff = reportesVista.jDateChooserFin.getDate();
-
-        if (fi == null || ff == null) {
-            JOptionPane.showMessageDialog(null, "Debes de seleccionar alguna fecha para buscar");
-        } else {
-            fecha_inicio = hourFormat.format(fi);
-            fecha_fin = hourFormat.format(ff);
-            DefaultTableModel dtm = new DefaultTableModel();
-            reportesVista.jTableReporte.setRowHeight(20);
-            dtm.addColumn("MOG");
-            dtm.addColumn("NoParte MOG");
-            dtm.addColumn("Lote");
-            dtm.addColumn("OP");
-            dtm.addColumn("MOG");
-            dtm.addColumn("OP");
-            dtm.addColumn("WC");
-            dtm.addColumn("Fecha final");
-            dtm.addColumn("");
-            dtm.addColumn("");
-            dtm.addColumn("Piezas procesadas");
-            dtm.addColumn("Piezas aprobadas");
-            dtm.addColumn("Horas trabajadas");
-            dtm.addColumn("Minutos trabajados");
-            dtm.addColumn("");
-            dtm.addColumn("");
-            dtm.addColumn("");
-            dtm.addColumn("");
-            dtm.addColumn("");
-            dtm.addColumn("");
-            dtm.addColumn("");
-            dtm.addColumn("QTY. SCRAP");
-            dtm.addColumn("SCRAP HOJA AZUL");
-            dtm.addColumn("QTY PIEZAS VERIF.");
-            reportesVista.jTableReporte.setModel(dtm);
-            reportesVista.jTableReporte.setAutoResizeMode(0);
-            for (int i = 0; i < reportesVista.jTableReporte.getColumnCount(); i++) {
-                reportesVista.jTableReporte.getColumnModel().getColumn(i).setPreferredWidth(180);
-            }
-            try {
-
-                CallableStatement cst = connectionDB.prepareCall("call reporteBitacoraMaquinado(?,?)");
-                cst.setString(1, fecha_inicio);
-                cst.setString(2, fecha_fin);
-                ResultSet rst = cst.executeQuery();
-                while (rst.next()) {
-                    String[] data = new String[24];
-                    data[0] = rst.getString("mog");
-                    String noNuevo = rst.getString("no_parte");
-                    String nuNe = noNuevo.replace("-", "'");
-                    data[1] = nuNe;
-                    data[2] = rst.getString("loteTM");
-                    data[3] = rst.getString("orden_manufactura");
-                    data[4] = rst.getString("mog2");
-                    data[5] = rst.getString("po2");
-                    wc = rst.getString("linea");
-                    if (wc.equals("TG03")) {
-                        data[6] = "3";
-                    }
-                    if (wc.equals("TG02")) {
-                        data[6] = "2";
-                    }
-                    if (wc.equals("TG01")) {
-                        data[6] = "1";
-                    }
-                    if (wc.equals("TGP01")) {
-                        data[6] = "P1";
-                    }
-                    if (wc.equals("TB02F")) {
-                        data[6] = "2";
-                    }
-                    if (wc.equals("TB03F")) {
-                        data[6] = "3";
-                    }
-                    orden = validarOrden(rst.getString("orden_manufactura"));
-                    if (orden.equals("PLT")) {
-                        String completo = rst.getString("no_parte");
-                        nuNe = completo.replace("-", "'");
-                        data[1] = completo + "'TG";
-                    }
-                    if (orden.equals("HBL")) {
-                        String completo = rst.getString("no_parte");
-                        nuNe = completo.replace("-", "'");
-                        data[1] = completo + "'TH";
-                    }
-                    if (orden.equals("BFO")) {
-                        String completo = rst.getString("no_parte");
-                        nuNe = completo.replace("-", "'");
-                        data[1] = completo + "'TF";
-                    }
-
-                    fech = fechaUltima(rst.getString("orden_manufactura"));
-                    nuevaFecha = dayformat.format(fech);
-                    data[7] = nuevaFecha;
-                    data[8] = "";
-                    data[9] = "";
-                    data[10] = rst.getString("totalpiezas_procesadas");
-                    data[11] = rst.getString("total_piezas_aprobadas");
-                    tiempo = totalTiempo(rst.getString("orden_manufactura"), connectionDB, rst.getString("mog"), wc);
-                    String[] hraDiv = tiempo.split(":");
-                    data[12] = hraDiv[0];
-                    data[13] = hraDiv[1];
-                    data[14] = "";
-                    data[15] = "";
-                    data[16] = "";
-                    data[17] = "";
-                    data[18] = "";
-                    data[19] = "";
-                    data[20] = "";
-                    data[21] = rst.getString("total_scrap");
-                    data[22] = null;
-                    data[23] = rst.getString("verificacion");
-                    dtm.addRow(data);
-                }
-
-            } catch (SQLException e) {
-                System.err.println("Error " + e.getMessage());
-            }
-        }
-    }
-
-    public void consultaYLlenadoDeTablasNuevo(ReporteBitacoraBush reportesVista) {
+    public void consultaYLlenadoDeTablasNuevo(Bitacora_BS_Procesos_View reportesVista) {
         Connection connectionDB = conexion.conexionBUSHMySQL();
 
         String fecha_inicio;
@@ -706,134 +569,6 @@ public class Bitacora_BS_Maquinado_Model {
         }
     }
 
-    public void consultaYLlenadoDeTablasByMOG(Bitacora_BS_Maquinado_View reportesVista) {
-        Connection connectionDB = conexion.conexionBUSHMySQL();
-
-        String fecha_inicio;
-        String fecha_fin;
-        String wc, orden, mm, colu, defe;
-        String tiempo = null;
-        int cant;
-        String nuevaFecha;
-        Date fech;
-
-        DateFormat dayformat = new SimpleDateFormat("dd/MM/yyyy");
-
-        String fi3;
-        fi3 = reportesVista.jTextFieldBusquedaMOG.getText();
-        DefaultTableModel dtm = new DefaultTableModel();
-        reportesVista.jTableReporte.setRowHeight(20);
-        dtm.addColumn("MOG");
-        dtm.addColumn("NoParte MOG");
-        dtm.addColumn("Lote");
-        dtm.addColumn("OP");
-        dtm.addColumn("MOG");
-        dtm.addColumn("OP");
-        dtm.addColumn("WC");
-        dtm.addColumn("Fecha final");
-        dtm.addColumn("");
-        dtm.addColumn("");
-        dtm.addColumn("Piezas procesadas");
-        dtm.addColumn("Piezas aprobadas");
-        dtm.addColumn("Horas trabajadas");
-        dtm.addColumn("Minutos trabajados");
-        dtm.addColumn("");
-        dtm.addColumn("");
-        dtm.addColumn("");
-        dtm.addColumn("");
-        dtm.addColumn("");
-        dtm.addColumn("");
-        dtm.addColumn("");
-        dtm.addColumn("QTY. SCRAP");
-        dtm.addColumn("SCRAP HOJA AZUL");
-        dtm.addColumn("QTY PIEZAS VERIF.");
-        reportesVista.jTableReporte.setModel(dtm);
-        reportesVista.jTableReporte.setAutoResizeMode(0);
-        for (int i = 0; i < reportesVista.jTableReporte.getColumnCount(); i++) {
-            reportesVista.jTableReporte.getColumnModel().getColumn(i).setPreferredWidth(180);
-        }
-        try {
-
-            CallableStatement cst = connectionDB.prepareCall("call reporteBitacoraMaquinado2(?)");
-            cst.setString(1, "%" + fi3 + "%");
-            ResultSet rst = cst.executeQuery();
-            while (rst.next()) {
-                String[] data = new String[24];
-                data[0] = rst.getString("mog");
-                String noNuevo = rst.getString("no_parte");
-                String nuNe = noNuevo.replace("-", "'");
-                data[1] = nuNe;
-                data[2] = rst.getString("loteTM");
-                data[3] = rst.getString("orden_manufactura");
-                data[4] = rst.getString("mog2");
-                data[5] = rst.getString("po2");
-                wc = rst.getString("linea");
-                if (wc.equals("TG03")) {
-                    data[6] = "3";
-                }
-                if (wc.equals("TG02")) {
-                    data[6] = "2";
-                }
-                if (wc.equals("TG01")) {
-                    data[6] = "1";
-                }
-                if (wc.equals("TGP01")) {
-                    data[6] = "P1";
-                }
-                if (wc.equals("TB02F")) {
-                    data[6] = "2";
-                }
-                if (wc.equals("TB03F")) {
-                    data[6] = "3";
-                }
-
-                orden = validarOrden(rst.getString("orden_manufactura"));
-                if (orden.equals("PLT")) {
-                    String completo = rst.getString("no_parte");
-                    nuNe = completo.replace("-", "'");
-                    data[1] = completo + "'TG";
-                }
-                if (orden.equals("HBL")) {
-                    String completo = rst.getString("no_parte");
-                    nuNe = completo.replace("-", "'");
-                    data[1] = completo + "'TH";
-                }
-                if (orden.equals("BFO")) {
-                    String completo = rst.getString("no_parte");
-                    nuNe = completo.replace("-", "'");
-                    data[1] = completo + "'TF";
-                }
-                fech = fechaUltima(rst.getString("orden_manufactura"));
-                nuevaFecha = dayformat.format(fech);
-                data[7] = nuevaFecha;
-                data[8] = "";
-                data[9] = "";
-                data[10] = rst.getString("totalpiezas_procesadas");
-                data[11] = rst.getString("total_piezas_aprobadas");
-
-                tiempo = totalTiempo(rst.getString("orden_manufactura"), connectionDB, rst.getString("mog"), wc);
-
-                String[] hraDiv = tiempo.split(":");
-                data[12] = hraDiv[0];
-                data[13] = hraDiv[1];
-                data[14] = "";
-                data[15] = "";
-                data[16] = "";
-                data[17] = "";
-                data[18] = "";
-                data[19] = "";
-                data[20] = "";
-                data[21] = rst.getString("total_scrap");
-                data[22] = null;
-                data[23] = rst.getString("verificacion");
-                dtm.addRow(data);
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error " + e.getMessage());
-        }
-    }
-
     public Date fechaUltima2(String orden, DBConexion m) {
         Connection con = m.conexionHBMySQL();
         Date rg = null;
@@ -850,7 +585,7 @@ public class Bitacora_BS_Maquinado_Model {
         return rg;
     }
     
-    public void consultaYLlenadoDeTablasByMOGnuevo(ReporteBitacoraBush reportesVista) {
+    public void consultaYLlenadoDeTablasByMOGnuevo(Bitacora_BS_Procesos_View reportesVista) {
         Connection connectionDB = conexion.conexionBUSHMySQL();
 
         String fecha_inicio;
@@ -1016,7 +751,7 @@ public class Bitacora_BS_Maquinado_Model {
 
     }
 
-    public String ultimoProceso(ReporteBitacoraBush reportesVista) {
+    public String ultimoProceso(Bitacora_BS_Procesos_View reportesVista) {
         String last = null;
         Connection connectionDB = conexion.conexionBUSHMySQL();
         String fi3, ultim;
@@ -1148,7 +883,7 @@ public class Bitacora_BS_Maquinado_Model {
         return total;
     }
 
-    public String tiemposASumarBush(ReporteBitacoraBush reportesVista) {
+    public String tiemposASumarBush(Bitacora_BS_Procesos_View reportesVista) {
         Connection connectionDB = conexion.conexionBUSHMySQL();
         String fi3 = reportesVista.jTextFieldBusquedaMOG.getText();
         String[] data = new String[20];
@@ -1262,7 +997,7 @@ public class Bitacora_BS_Maquinado_Model {
         return total;
     }
 
-    public void consultaBushByMOG(ReporteBitacoraBush reportesVista) {
+    public void consultaBushByMOG(Bitacora_BS_Procesos_View reportesVista) {
         Connection connectionDB = conexion.conexionBUSHMySQL();
         String wc;
 
@@ -1397,7 +1132,7 @@ public class Bitacora_BS_Maquinado_Model {
         }
     }
 
-    public void consultaBushByFechas(ReporteBitacoraBush reportesVista) {
+    public void consultaBushByFechas(Bitacora_BS_Procesos_View reportesVista) {
         Connection connectionDB = conexion.conexionBUSHMySQL();
         String wc;
         String fecha_inicio;
@@ -1602,7 +1337,7 @@ public class Bitacora_BS_Maquinado_Model {
             total = formatearMinutosAHoraMinuto(totalTotal);
 
         } catch (SQLException ex) {
-            Logger.getLogger(Bitacora_BS_Maquinado_Model.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bitacora_BS_Procesos_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
         return total;
     }
@@ -1657,7 +1392,7 @@ public class Bitacora_BS_Maquinado_Model {
             total = formatearMinutosAHoraMinuto(totalTotal);
 
         } catch (SQLException ex) {
-            Logger.getLogger(Bitacora_BS_Maquinado_Model.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bitacora_BS_Procesos_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
         return total;
     }
@@ -1748,22 +1483,6 @@ public class Bitacora_BS_Maquinado_Model {
         return rg;
     }
 
-    public void limpiarTablaMachining(Bitacora_BS_Maquinado_View reportesVista) {
-        DefaultTableModel dtm = new DefaultTableModel();
-        reportesVista.jTableReporte.setModel(dtm);
-        reportesVista.jTableReporte.setAutoResizeMode(0);
-        reportesVista.jDateChooserInicio.setDate(null);
-        reportesVista.jDateChooserFin.setDate(null);
-        reportesVista.jTextFieldBusquedaMOG.setText(null);
-    }
-
-    public void limpiarTablaBushing(ReporteBitacoraBush reportesVista) {
-        DefaultTableModel dtm = new DefaultTableModel();
-        reportesVista.jTableReporte.setModel(dtm);
-        reportesVista.jTableReporte.setAutoResizeMode(0);
-        reportesVista.jTextFieldBusquedaMOG.setText(null);
-    }
-
     public int validarProduccioncontinua(String order) {
         int res = 0;
         Connection con = conexion.conexionBUSHMySQL();
@@ -1825,7 +1544,7 @@ public class Bitacora_BS_Maquinado_Model {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Bitacora_BS_Maquinado_Model.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bitacora_BS_Procesos_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
         return res;
     }
@@ -1849,7 +1568,7 @@ public class Bitacora_BS_Maquinado_Model {
             horaCierreForming = cst1.getString(4);
 
         } catch (SQLException ex) {
-            Logger.getLogger(Bitacora_BS_Maquinado_Model.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bitacora_BS_Procesos_Model.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         comp = DiferenciaFechas1(fechaCierreF, fechaCierreC);
@@ -1909,7 +1628,7 @@ public class Bitacora_BS_Maquinado_Model {
                 total = formatearMinutosAHoraMinuto(totalTotal);
 
             } catch (SQLException ex) {
-                Logger.getLogger(Bitacora_BS_Maquinado_Model.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Bitacora_BS_Procesos_Model.class.getName()).log(Level.SEVERE, null, ex);
             }
             valor = total;
 
@@ -1928,7 +1647,7 @@ public class Bitacora_BS_Maquinado_Model {
                     valor = "00:01";
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(Bitacora_BS_Maquinado_Model.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Bitacora_BS_Procesos_Model.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return valor;

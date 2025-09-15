@@ -7,6 +7,7 @@ package Controller;
 import View.Bitacora_BS_Empaque_View;
 import View.Bitacora_BS_Maquinado_View;
 import View.Bitacora_BS_Prensa_View;
+import View.Bitacora_BS_Procesos_View;
 import View.Menu_BS_View;
 import View.Menu_HB_View;
 import javax.swing.JOptionPane;
@@ -28,6 +29,7 @@ public class Menu_BS_Controller {
         menu_BS_View.btnPCK.addActionListener(e -> abrirBitacora("PCK"));
         menu_BS_View.btnPRS.addActionListener(e -> abrirBitacora("PRS"));
         menu_BS_View.btnHBL.addActionListener(e -> abrirBitacora("HBL"));
+        menu_BS_View.btnBUSH.addActionListener(e -> abrirBitacora("BSH"));
         menu_BS_View.btnRegresar.addActionListener(e -> regresar());
     }
 
@@ -47,6 +49,11 @@ public class Menu_BS_Controller {
                 Bitacora_BS_Maquinado_View maquinado_View = new Bitacora_BS_Maquinado_View();
                 Bitacora_BS_Maquinado_Controller maquinado_Controller = new Bitacora_BS_Maquinado_Controller(maquinado_View);
                 maquinado_View.setVisible(true);
+                break;
+            case "BSH":
+                Bitacora_BS_Procesos_View procesos_View = new Bitacora_BS_Procesos_View();
+                Bitacora_BS_Procesos_Controller procesos_Controller = new Bitacora_BS_Procesos_Controller(procesos_View);
+                procesos_View.setVisible(true);
                 break;
             default:
                 JOptionPane.showMessageDialog(null, "Proceso desconocida");
