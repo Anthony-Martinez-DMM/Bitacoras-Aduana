@@ -71,13 +71,14 @@ public class Bitacora_HB_Prensa_Model {
             dtm.addColumn("Fecha final");
             dtm.addColumn("Horas trabajadas");
             dtm.addColumn("Minutos trabajados");
-            dtm.addColumn("Piezas aprobadas");
             for (int i = 1; i < 31; i++) {
                 dtm.addColumn("Lote " + i);
                 dtm.addColumn("Mts " + i);
                 dtm.addColumn("End " + i);
             }
-
+            dtm.addColumn("PIEZAS PRENSADAS");
+            dtm.addColumn("SCRAPS");
+            dtm.addColumn("PIEZAS APROBADAS");
             reportesVista.jTableReporte.setModel(dtm);
             reportesVista.jTableReporte.setAutoResizeMode(0);
             for (int i = 0; i < reportesVista.jTableReporte.getColumnCount(); i++) {
@@ -104,7 +105,7 @@ public class Bitacora_HB_Prensa_Model {
                         data[0] = rst.getString("mog");
                         String noNuevo = rst.getString("no_parte");
                         String nuNe = noNuevo.replace("-", "'");
-                        data[1] = noNuevo+"'TP";
+                        data[1] = noNuevo + "'TP";
                         data[2] = rst.getString("loteTM");
                         data[3] = rst.getString("orden_manufactura");
                         data[4] = rst.getString("mog2");
@@ -169,6 +170,10 @@ public class Bitacora_HB_Prensa_Model {
                             nuNe = rst.getString("no_parte").replace("-", "'");
                             data[1] = nuNe;
                         }
+                        data[dtm.getColumnCount() - 3] = Integer.parseInt(rst.getString("totalpiezas_procesadas")); // Ahora esta es la antepenúltima
+                        data[dtm.getColumnCount() - 2] = Integer.parseInt(rst.getString("total_scrap")); // Ahora esta es la penúltima
+                        data[dtm.getColumnCount() - 1] = rst.getString("total_piezas_aprobadas"); // Esta es la última columna ahora
+
                         dtm.addRow(data);
                         if (cc < reportesVista.jTableReporte.getRowCount()) {
 
@@ -257,7 +262,6 @@ public class Bitacora_HB_Prensa_Model {
             dtm.addColumn("Fecha final");
             dtm.addColumn("Horas trabajadas");
             dtm.addColumn("Minutos trabajados");
-            dtm.addColumn("Piezas aprobadas");
             for (int i = 1; i < 5; i++) {
                 dtm.addColumn("Lote " + i);
                 dtm.addColumn("Mts " + i);
@@ -265,6 +269,7 @@ public class Bitacora_HB_Prensa_Model {
             }
             dtm.addColumn("PIEZAS PRENSADAS");
             dtm.addColumn("SCRAPS");
+            dtm.addColumn("PIEZAS APROBADAS");
 
             reportesVista.jTableReporte.setModel(dtm);
             reportesVista.jTableReporte.setAutoResizeMode(0);
@@ -339,7 +344,6 @@ public class Bitacora_HB_Prensa_Model {
                         String[] hraDiv = tiempo.split(":");
                         data[8] = hraDiv[0];
                         data[9] = hraDiv[1];
-                        data[10] = rst.getString("total_piezas_aprobadas");
                         orden = validarOrden(rst.getString("orden_manufactura"));
                         if (orden.equals("PRS")) {
                             String completo = rst.getString("no_parte");
@@ -355,8 +359,9 @@ public class Bitacora_HB_Prensa_Model {
                             data[1] = nuNe;
                         }
 
-                        data[23] = Integer.parseInt(rst.getString("totalpiezas_procesadas"));
-                        data[24] = Integer.parseInt(rst.getString("total_scrap"));
+                        data[dtm.getColumnCount() - 3] = Integer.parseInt(rst.getString("totalpiezas_procesadas")); // Ahora esta es la antepenúltima
+                        data[dtm.getColumnCount() - 2] = Integer.parseInt(rst.getString("total_scrap")); // Ahora esta es la penúltima
+                        data[dtm.getColumnCount() - 1] = rst.getString("total_piezas_aprobadas"); // Esta es la última columna ahora
 
                         dtm.addRow(data);
                         if (cc < reportesVista.jTableReporte.getRowCount()) {
@@ -632,12 +637,15 @@ public class Bitacora_HB_Prensa_Model {
                 dtm.addColumn("Fecha final");
                 dtm.addColumn("Horas trabajadas");
                 dtm.addColumn("Minutos trabajados");
-                dtm.addColumn("Piezas aprobadas");
                 for (int i = 1; i < 31; i++) {
                     dtm.addColumn("Lote " + i);
                     dtm.addColumn("Mts " + i);
                     dtm.addColumn("End " + i);
                 }
+                dtm.addColumn("PIEZAS PRENSADAS");
+                dtm.addColumn("SCRAPS");
+                dtm.addColumn("PIEZAS APROBADAS");
+
                 reportesVista.jTableReporte.setModel(dtm);
                 reportesVista.jTableReporte.setAutoResizeMode(0);
                 for (int i = 0; i < reportesVista.jTableReporte.getColumnCount(); i++) {
@@ -700,7 +708,6 @@ public class Bitacora_HB_Prensa_Model {
                     String[] hraDiv = tiempo.split(":");
                     data[8] = hraDiv[0];
                     data[9] = hraDiv[1];
-                    data[10] = rst.getString("total_piezas_aprobadas");
                     orden = validarOrden(rst.getString("orden_manufactura"));
                     if (orden.equals("PRS")) {
                         String completo = rst.getString("no_parte");
@@ -715,6 +722,11 @@ public class Bitacora_HB_Prensa_Model {
                         nuNe = rst.getString("no_parte").replace("-", "'");
                         data[1] = nuNe;
                     }
+
+                    data[dtm.getColumnCount() - 3] = rst.getString("totalpiezas_procesadas"); // Ahora esta es la antepenúltima
+                    data[dtm.getColumnCount() - 2] = rst.getString("total_scrap"); // Ahora esta es la penúltima
+                    data[dtm.getColumnCount() - 1] = rst.getString("total_piezas_aprobadas"); // Esta es la última columna ahora
+
                     dtm.addRow(data);
                     if (cc < reportesVista.jTableReporte.getRowCount()) {
 
@@ -776,7 +788,6 @@ public class Bitacora_HB_Prensa_Model {
                     dtm.addColumn("Fecha final");
                     dtm.addColumn("Horas trabajadas");
                     dtm.addColumn("Minutos trabajados");
-                    dtm.addColumn("Piezas aprobadas");
                     for (int i = 1; i < 5; i++) {
                         dtm.addColumn("Lote " + i);
                         dtm.addColumn("Mts " + i);
@@ -784,6 +795,7 @@ public class Bitacora_HB_Prensa_Model {
                     }
                     dtm.addColumn("PIEZAS PRENSADAS");
                     dtm.addColumn("SCRAPS");
+                    dtm.addColumn("PIEZAS APROBADAS");
 
                     reportesVista.jTableReporte.setModel(dtm);
                     reportesVista.jTableReporte.setAutoResizeMode(0);
@@ -846,7 +858,6 @@ public class Bitacora_HB_Prensa_Model {
                         String[] hraDiv = tiempo.split(":");
                         data2[8] = hraDiv[0];
                         data2[9] = hraDiv[1];
-                        data2[10] = rst13.getString("total_piezas_aprobadas");
                         orden = validarOrden(rst13.getString("orden_manufactura"));
                         if (orden.equals("PRS")) {
                             String completo = rst13.getString("no_parte");
@@ -862,8 +873,9 @@ public class Bitacora_HB_Prensa_Model {
                             data2[1] = nuNe;
                         }
 
-                        data2[23] = Integer.parseInt(rst13.getString("totalpiezas_procesadas"));
-                        data2[24] = Integer.parseInt(rst13.getString("total_scrap"));
+                        data2[dtm.getColumnCount() - 3] = rst13.getString("totalpiezas_procesadas"); // Ahora esta es la antepenúltima
+                        data2[dtm.getColumnCount() - 2] = rst13.getString("total_scrap"); // Ahora esta es la penúltima
+                        data2[dtm.getColumnCount() - 1] = rst13.getString("total_piezas_aprobadas"); // Esta es la última columna ahora
 
                         dtm.addRow(data2);
                         if (cc < reportesVista.jTableReporte.getRowCount()) {
