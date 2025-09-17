@@ -58,11 +58,17 @@ public class Bitacora_HB_Prensa_View extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(782, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButtonExport.setBackground(new java.awt.Color(0, 0, 255));
+        jButtonExport.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonExport.setForeground(new java.awt.Color(255, 255, 255));
         jButtonExport.setText("EXPORTAR");
-        getContentPane().add(jButtonExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 530, -1, -1));
+        getContentPane().add(jButtonExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 530, 130, 40));
 
+        jButtonBuscar.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setText("BUSCAR");
-        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(574, 11, 85, -1));
+        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 130, 40));
 
         jLabel7.setText("Fecha fin: ");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 17, -1, -1));
@@ -72,13 +78,16 @@ public class Bitacora_HB_Prensa_View extends javax.swing.JFrame {
         getContentPane().add(jDateChooserFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 11, 135, -1));
         getContentPane().add(jDateChooserInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 11, 135, -1));
 
-        jButtonAtras.setText("Atrás");
+        jButtonAtras.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonAtras.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonAtras.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAtras.setText("ATRÁS");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 83, -1));
+        getContentPane().add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 130, 40));
 
         jTableReporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,7 +99,7 @@ public class Bitacora_HB_Prensa_View extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableReporte);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 678, 273));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 670, 273));
 
         buttonGroup1.add(jCheckBox4lotes);
         jCheckBox4lotes.setText("OP + de 4 lotes");
@@ -110,7 +119,7 @@ public class Bitacora_HB_Prensa_View extends javax.swing.JFrame {
                 jTextFieldBusquedaMOGActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldBusquedaMOG, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 330, 40));
+        getContentPane().add(jTextFieldBusquedaMOG, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 320, 40));
 
         jLabel1.setText("Colocar solo los ultimos 5 digitos de la MOG");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 250, 50));

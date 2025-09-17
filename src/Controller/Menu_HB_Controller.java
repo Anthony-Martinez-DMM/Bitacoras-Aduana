@@ -5,6 +5,7 @@
 package Controller;
 
 import View.Bitacora_HB_Maquinado_View;
+import View.Bitacora_HB_Prensa_View;
 import View.Menu_HB_View;
 import javax.swing.JOptionPane;
 
@@ -30,7 +31,9 @@ public class Menu_HB_Controller {
     private void abrirBitacora(String proceso) {
         switch (proceso) {
             case "PRS":
-                // TODO
+                Bitacora_HB_Prensa_View prensa_view = new Bitacora_HB_Prensa_View();
+                Bitacora_HB_Prensa_Controller bitacora_prensa = new Bitacora_HB_Prensa_Controller(prensa_view);
+                prensa_view.setVisible(true);
                 break;
             case "HBL":
                 Bitacora_HB_Maquinado_View maquinado_View = new Bitacora_HB_Maquinado_View();

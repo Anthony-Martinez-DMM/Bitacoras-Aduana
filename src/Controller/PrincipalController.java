@@ -116,15 +116,15 @@ public class PrincipalController implements KeyListener, ActionListener {
             
             if(conet==2){
                 if(banderaPro==2){
-                    mdl_maq.consultaYLlenadoDeTablasByMOG(m, vw_maq);
+                    mdl_maq.consultaYLlenadoDeTablasByMOG( vw_maq);
                 }
                 
                 if(banderaPro==4){
-                    mdl_pck.consultaYLlenadoDeTablasByMOG(m, vw_pck);
+                    mdl_pck.consultaYLlenadoDeTablasByMOG( vw_pck);
                 }
                 if(banderaPro==3){
                     //mdl_maq.consultaBushByMOG(m, vw_bush);
-                    mdl_maq.consultaYLlenadoDeTablasByMOGnuevo(m, vw_bush);
+                    mdl_maq.consultaYLlenadoDeTablasByMOGnuevo( vw_bush);
                 }
             }
         }
@@ -203,7 +203,7 @@ public class PrincipalController implements KeyListener, ActionListener {
         }
         
         if(e.getSource() == vw_pck.jButtonBuscar){
-            mdl_pck.consultaYLlenadoDeTablas(m, vw_pck);
+            mdl_pck.consultaYLlenadoDeTablas(vw_pck);
         }
         
         if (e.getSource() == vw_pck.jButtonExport) {
@@ -236,10 +236,10 @@ public class PrincipalController implements KeyListener, ActionListener {
         
         if(e.getSource() == vw_prs.jButtonBuscar){
             if(vw_prs.jCheckBoxOPnormal.isSelected()){
-                mdl_prs.consultaYLlenadoDeTablasNormal(m, vw_prs);
+                mdl_prs.consultaYLlenadoDeTablasNormal( vw_prs);
             }else{
                 if(vw_prs.jCheckBox4lotes.isSelected()){
-                mdl_prs.consultaYLlenadoDeTablas4Lot(m, vw_prs);
+                mdl_prs.consultaYLlenadoDeTablas4Lot( vw_prs);
                 }else{
                     JOptionPane.showMessageDialog(null,"Debes elegir un tipo de orden");
                 }
@@ -282,7 +282,7 @@ public class PrincipalController implements KeyListener, ActionListener {
         
         if(e.getSource() == vw_maq.jButtonBuscar){
             if(conet==2){
-                mdl_maq.consultaYLlenadoDeTablas(m, vw_maq);
+                mdl_maq.consultaYLlenadoDeTablas( vw_maq);
             }else{
                 mdl_maq.consultaYLlenadoDeTablasHBMaquinado(m, vw_maq);
             }
@@ -314,7 +314,7 @@ public class PrincipalController implements KeyListener, ActionListener {
         
         if(e.getSource() == vw_bush.jButtonBuscar){
             //mdl_maq.consultaBushByFechas(m, vw_bush);
-            mdl_maq.consultaYLlenadoDeTablasNuevo(m, vw_bush);
+            mdl_maq.consultaYLlenadoDeTablasNuevo( vw_bush);
         }
         
         if (e.getSource() == vw_bush.jButtonExport) {
