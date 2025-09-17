@@ -107,7 +107,7 @@ public class Bitacora_HB_Maquinado_Model {
         int totalScrap = rst.getInt("total_scrap");
         int cambioMOG = rst.getInt("cambio_mog");
         
-        data[10] = String.valueOf(piezasProcesadas);
+        data[10] = String.valueOf(piezasRecibidas);
         data[11] = String.valueOf(piezasAprobadas);
         data[12] = rst.getInt("horas_trabajadas");
         data[13] = rst.getInt("minutos_trabajados");
